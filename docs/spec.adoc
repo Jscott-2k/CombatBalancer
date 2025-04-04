@@ -1,0 +1,43 @@
+= SPEC-001: CombatBalancer - D&D Encounter Simulation Tool
+:sectnums:
+:toc:
+
+
+== Background
+
+Many Dungeons & Dragons players and Dungeon Masters struggle to balance combat encounters that feel challenging but fair. The existing encounter balancing tools (like Kobold Fight Club or official XP-based guidelines) are often too static or misleading. They don’t account for party composition, action economy, or damage variance.
+
+This project aims to build a simulation-based combat balancer that takes in detailed party and monster data, runs thousands of combat simulations, and outputs useful insights: win/loss chances, survivability, suggested adjustments. The goal is to give DMs a data-driven tool to plan better encounters and avoid unintentional TPKs or cakewalk fights.
+
+
+== Requirements
+
+The system should serve as a combat balancing and simulation tool for Dungeons & Dragons 5e (with potential to extend to other tabletop RPGs). It will take structured input about party configuration and enemy encounters, simulate combat outcomes, and output balance reports.
+
+=== Must Have
+- Accept structured input for party members (class, level, HP, AC, role, base damage, abilities)
+- Accept structured input for enemy groups (CR, HP, AC, role, base damage, abilities)
+- Simulate multiple rounds of turn-based combat with basic action economy
+- Support configurable attack priority per unit (e.g., focus weakest, focus melee, random, retaliate)
+- Output key metrics:
+  - Win rate (party victory vs. TPK)
+  - Average number of rounds
+  - Individual character survival rates
+- Generate balance rating (e.g., Overpowered, Balanced, Deadly)
+- CLI interface to run simulations from config file
+- JSON/YAML input format with reusable encounter presets
+- Ability to simulate multiple iterations (e.g., 1000 runs per encounter)
+- Support for custom monster stats (non-official)
+- Role-based targeting strategies (e.g., focus melee, focus ranged, focus support)
+- Action logging mode to inspect individual combat runs (for debugging)
+- Optional behavior rules per unit to allow dynamic targeting logic (e.g., adapt based on HP, previous damage, team status)
+- Abstract simulation of support actions:
+  - Buffs (e.g., increase hit chance, AC, or damage temporarily)
+  - Heals (e.g., restore HP to allies each round)
+  - Crowd control (e.g., chance to deny enemy actions)
+- Visual charts for survivability, damage over time
+
+=== Won’t Have (in MVP)
+- Full rules engine for all 5e spells/conditions
+- Real-time battle UI
+- Multi-system support (e.g., Pathfinder)
