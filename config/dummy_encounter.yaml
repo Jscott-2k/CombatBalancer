@@ -1,0 +1,8 @@
+# Dummy Encounter Configuration File
+# This file is provided as a sample and for testing only.
+encounter:
+  party: "dummy_adventurers"
+  enemies: "dummy_goblins"
+  difficulty_target: "deadly"
+  iterations: 1000
+  max_rounds: 20

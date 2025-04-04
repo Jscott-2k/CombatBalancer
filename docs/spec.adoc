@@ -2,42 +2,86 @@
 :sectnums:
 :toc:
 
-
 == Background
 
 Many Dungeons & Dragons players and Dungeon Masters struggle to balance combat encounters that feel challenging but fair. The existing encounter balancing tools (like Kobold Fight Club or official XP-based guidelines) are often too static or misleading. They don’t account for party composition, action economy, or damage variance.
 
 This project aims to build a simulation-based combat balancer that takes in detailed party and monster data, runs thousands of combat simulations, and outputs useful insights: win/loss chances, survivability, suggested adjustments. The goal is to give DMs a data-driven tool to plan better encounters and avoid unintentional TPKs or cakewalk fights.
 
-
 == Requirements
 
 The system should serve as a combat balancing and simulation tool for Dungeons & Dragons 5e (with potential to extend to other tabletop RPGs). It will take structured input about party configuration and enemy encounters, simulate combat outcomes, and output balance reports.
 
 === Must Have
+
+- Support tracking and consumption of limited class and item resources
+
 - Accept structured input for party members (class, level, HP, AC, role, base damage, abilities)
+
 - Accept structured input for enemy groups (CR, HP, AC, role, base damage, abilities)
+
 - Simulate multiple rounds of turn-based combat with basic action economy
+
 - Support configurable attack priority per unit (e.g., focus weakest, focus melee, random, retaliate)
+
 - Output key metrics:
+
   - Win rate (party victory vs. TPK)
   - Average number of rounds
   - Individual character survival rates
+
 - Generate balance rating (e.g., Overpowered, Balanced, Deadly)
+
 - CLI interface to run simulations from config file
+
 - JSON/YAML input format with reusable encounter presets
+
 - Ability to simulate multiple iterations (e.g., 1000 runs per encounter)
+
 - Support for custom monster stats (non-official)
+
 - Role-based targeting strategies (e.g., focus melee, focus ranged, focus support)
+
 - Action logging mode to inspect individual combat runs (for debugging)
+
 - Optional behavior rules per unit to allow dynamic targeting logic (e.g., adapt based on HP, previous damage, team status)
+
 - Abstract simulation of support actions:
+
   - Buffs (e.g., increase hit chance, AC, or damage temporarily)
   - Heals (e.g., restore HP to allies each round)
   - Crowd control (e.g., chance to deny enemy actions)
+
 - Visual charts for survivability, damage over time
 
 === Won’t Have (in MVP)
+
 - Full rules engine for all 5e spells/conditions
 - Real-time battle UI
 - Multi-system support (e.g., Pathfinder)
+
+== Method
+
+The system is designed as a modular, CLI-based Python application with a clear separation between input processing, simulation logic, and reporting. This allows easy extension for future integration with tools like Roll20 or a web interface.
+
+=== Component Descriptions
+
+- **CLI Runner**: Parses CLI arguments and kicks off simulation runs.
+
+- **Config Loader**: Reads and validates user-provided YAML/JSON input files.
+
+- **Parser**: Translates config into internal data models (e.g., Party, Combatant, Encounter).
+
+- **Simulation Engine**: Coordinates iterations of combat simulation, managing rounds and team turns.
+
+- **Combat Resolver**: Executes each turn: target selection, attacks, buffs, heals, and CC.
+
+- **Combatant Model**: Shared data structure representing all units (PCs, NPCs, monsters) in combat. Accessed by both the parser and the resolver.
+
+- **Logger**: Optionally stores detailed round-by-round logs for inspection.
+
+- **Metrics Aggregator**: Computes summary statistics from all simulations: win rate, deaths, average rounds.
+
+- **Chart Generator**: (Optional) Generates visual output using libraries like Matplotlib.
+
+- **Output Writer**: Prints final balance rating and optionally writes results to file.

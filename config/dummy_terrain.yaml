@@ -1,0 +1,8 @@
+# Dummy Terrain Configuration File for a 25x25 Combat Area
+# For this dummy configuration, any cell not listed is implicitly clear.
+
+terrain:
+  dimensions:
+    width: 25
+    height: 25
+  cells:

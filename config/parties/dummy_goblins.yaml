@@ -1,0 +1,9 @@
+# Dummy Party Configuration File
+# This file is provided as a sample and for testing only.
+party:
+  name: "dummy_goblins"
+  members:
+    - "goblin"
+    - "goblin"
+    - "goblin"
+    - "goblin"

@@ -1,0 +1,29 @@
+# Dummy Combatant Configuration File for goblin_01
+# This file is provided as a sample and for testing only.
+combatant:
+  id: "goblin"
+  type: "npc"
+  name: "Goblin"
+  challenge_rating: "1/8"
+  role: "melee"
+  max_hp: 7
+  hp: 7
+  ac: 15
+  position:
+    x: 5
+    y: 5
+  movement_speed: 30
+  ability_scores:
+    str: 8
+    dex: 14
+    con: 10
+    int: 10
+    wis: 8
+    cha: 8
+  action_slots:
+    action: 1
+    bonus_action: 1
+    reaction: 1
+  behavior: "random"
+  resources: []
+  ability_group: "goblin_abilities"

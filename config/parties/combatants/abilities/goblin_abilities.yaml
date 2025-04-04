@@ -1,0 +1,20 @@
+# Dummy Abilities Configuration File for goblin_01
+# This file is provided as a sample and for testing only.
+abilities:
+  actions:
+    - name: "Dagger Attack"
+      type: "attack"
+      amount: "1d4+DEX"       # Damage expression
+      resource: ""            # No resource is required for this action
+      scaling: "none"         # No scaling applies
+      range: 5                # Melee reach is 5 ft.
+      to_hit: "+4"            # Attack roll modifier (e.g., d20+4)
+  bonus_actions:
+    - name: "Nimble Escape"
+      type: "buff"            # Classified as a buff for tactical mobility
+      amount: "Disengage or Hide action"  # Describes the effect
+      resource: ""
+      scaling: "none"
+      range: 0                # Not applicable to an attack range
+  reactions: []
+  passives: []

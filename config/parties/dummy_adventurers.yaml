@@ -1,0 +1,8 @@
+# Dummy Party Configuration File
+# This file is provided as a sample and for testing only.
+party:
+  name: "Adventurers"
+  members:
+    - "dummy_lvl1_fighter"
+    - "dummy_lvl1_wizard"
+    - "dummy_lvl1_cleric"
